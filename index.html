@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wang Yifan - Profile</title>
+  <style>
+    :root {
+      --bg-primary: #ffffff;
+      --bg-secondary: #f6f8fa;
+      --bg-tertiary: #eaeef2;
+      --text-primary: #1f2328;
+      --text-secondary: #656d76;
+      --border: #d0d7de;
+      --accent: #0969da;
+      --accent-hover: #0550ae;
+      --code-bg: #f6f8fa;
+      --blockquote: #d0d7de;
+      --table-border: #d0d7de;
+    }
+
+    [data-theme="dark"] {
+      --bg-primary: #0d1117;
+      --bg-secondary: #161b22;
+      --bg-tertiary: #21262d;
+      --text-primary: #e6edf3;
+      --text-secondary: #8b949e;
+      --border: #30363d;
+      --accent: #58a6ff;
+      --accent-hover: #79c0ff;
+      --code-bg: #161b22;
+      --blockquote: #30363d;
+      --table-border: #30363d;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .header-left h1 {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .header-left p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+
+    .controls {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .toggle-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+
+    .toggle-btn:hover {
+      background: var(--bg-tertiary);
+    }
+
+    .toggle-btn svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+
+    .lang-btn {
+      font-weight: 500;
+    }
+
+    .lang-btn.active {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+
+    .header-right {
+      display: flex;
+      align-items: flex-start;
+      flex-shrink: 0;
+    }
+
+    .stats-img {
+      border-radius: 8px;
+    }
+
+    .section {
+      margin-bottom: 40px;
+    }
+
+    .section h2 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .intro {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+    }
+
+    .focus-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 4px 12px;
+      background: var(--bg-tertiary);
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--accent);
+    }
+
+    .subsection {
+      margin-bottom: 24px;
+    }
+
+    .subsection-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .subsection-header h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .company {
+      color: var(--accent);
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .subsection-header .period {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+    }
+
+    .subsection p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-bottom: 6px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+    }
+
+    table th, table td {
+      padding: 10px 14px;
+      text-align: left;
+      border: 1px solid var(--table-border);
+    }
+
+    table th {
+      background: var(--bg-secondary);
+      font-weight: 600;
+      width: 120px;
+    }
+
+    table td {
+      background: var(--bg-primary);
+    }
+
+    .project-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .project-link:hover {
+      text-decoration: underline;
+    }
+
+    .job-entry {
+      margin-bottom: 20px;
+    }
+
+    .job-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+    }
+
+    .job-header h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+
+    .job-header .company {
+      font-size: 0.9rem;
+    }
+
+    .job-header .period {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+    }
+
+    .job-item {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-bottom: 4px;
+      padding-left: 16px;
+      position: relative;
+    }
+
+    .job-item::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    .education-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .education-item .school {
+      font-weight: 600;
+    }
+
+    .education-item .details {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    .contact-list {
+      list-style: none;
+    }
+
+    .contact-list li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .contact-list svg {
+      width: 18px;
+      height: 18px;
+      fill: var(--text-secondary);
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 24px 0;
+    }
+
+    .footer {
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px 16px;
+      }
+
+      .header {
+        flex-direction: column;
+      }
+
+      .header-left h1 {
+        font-size: 1.6rem;
+      }
+
+      table th, table td {
+        padding: 8px 10px;
+        font-size: 0.9rem;
+      }
+
+      table th {
+        width: 90px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="header-left">
+        <h1 data-i18n="name">王一凡</h1>
+        <p data-i18n="title">嵌入式软件工程师</p>
+      </div>
+      <div class="header-right">
+        <img class="stats-img" alt="GitHub Stats" height="120" src="https://github-readme-stats.vercel.app/api?username=wyf9661&show_icons=true&theme=transparent" />
+      </div>
+      <div class="controls">
+        <button class="toggle-btn lang-btn active" id="lang-zh">中文</button>
+        <button class="toggle-btn lang-btn" id="lang-en">EN</button>
+        <button class="toggle-btn" id="theme-toggle" title="Toggle theme">
+          <svg id="sun-icon" viewBox="0 0 24 24" style="display:none;">
+            <path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zM12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72 1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+          </svg>
+          <svg id="moon-icon" viewBox="0 0 24 24">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <section class="section" id="about">
+      <p class="intro" data-i18n="intro">
+        嵌入式软件工程师，现任职于中汽创智（CAIC），专注于RTOS系统开发与大模型在车载场景的端侧落地。
+      </p>
+      <p class="intro" data-i18n="focus-label" style="margin-top:8px;">当前方向：</p>
+      <div class="focus-tags">
+        <span class="tag" data-i18n="tag-rtos">RTOS</span>
+        <span class="tag" data-i18n="tag-llms">LLMs</span>
+        <span class="tag" data-i18n="tag-aibox">AIBOX</span>
+        <span class="tag" data-i18n="tag-embedded-ai">嵌入式AI应用</span>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section" id="recent">
+      <h2 data-i18n="recent-title">🔭 最近在做什么</h2>
+
+      <div class="subsection">
+        <div class="subsection-header">
+          <h3 data-i18n="aibox-title">AIBOX 应用开发</h3>
+          <span class="company">@ CAIC</span>
+        </div>
+        <p data-i18n="aibox-desc">
+          车载外挂AI算力盒应用开发，探索大模型在汽车端侧的部署与推理优化。端云协同路线，解决原车算力不足与AI功能持续迭代的问题。
+        </p>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header">
+          <h3 data-i18n="rtos-title">自研微内核 RTOS</h3>
+          <span class="company">@ CAIC</span>
+        </div>
+        <p data-i18n="rtos-desc">
+          负责线程调度模块的系统调用实现，涉及syscall接口设计与内核态实现。
+        </p>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header">
+          <h3 data-i18n="sylixos-title">翼辉 SylixOS 生态建设</h3>
+          <span class="company" data-i18n="past">（过往）</span>
+        </div>
+        <p data-i18n="sylixos-desc">
+          SylixOS是目前国内最完整的嵌入式实时操作系统之一。
+        </p>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section" id="tech">
+      <h2 data-i18n="tech-title">⚙️ 技术栈</h2>
+      <table>
+        <tr>
+          <th data-i18n="tech-lang">语言</th>
+          <td data-i18n="tech-lang-content">C / Golang</td>
+        </tr>
+        <tr>
+          <th data-i18n="tech-os">操作系统</th>
+          <td data-i18n="tech-os-content">Linux · RTOS (SylixOS / 自研微内核)</td>
+        </tr>
+        <tr>
+          <th data-i18n="tech-cloud">云原生</th>
+          <td data-i18n="tech-cloud-content">Docker · gRPC · OpenTelemetry · 微服务</td>
+        </tr>
+        <tr>
+          <th data-i18n="tech-db">数据库</th>
+          <td data-i18n="tech-db-content">MySQL · SQLite</td>
+        </tr>
+        <tr>
+          <th data-i18n="tech-dev">开发</th>
+          <td data-i18n="tech-dev-content">DevSecOps · OTA升级方案 · License授权体系</td>
+        </tr>
+      </table>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section" id="oss">
+      <h2 data-i18n="oss-title">📦 开源贡献</h2>
+
+      <div class="subsection">
+        <div class="subsection-header">
+          <h3><a class="project-link" href="https://github.com/acoinfo/vsoa" target="_blank">vsoa</a></h3>
+        </div>
+        <p data-i18n="vsoa-desc">
+          VSOA分布式软总线的Golang实现，支持服务发现、RPC通信，用于SylixOS与Linux系统间的跨进程、跨设备通信。
+        </p>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-header">
+          <h3><a class="project-link" href="https://github.com/acoinfo/go" target="_blank">Go</a></h3>
+        </div>
+        <p data-i18n="go-desc">
+          SylixOS的Golang Runtime维护分支，修复上游bug并跟进新版本特性。
+        </p>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section" id="experience">
+      <h2 data-i18n="exp-title">👨‍💻 工作经历</h2>
+
+      <div class="job-entry">
+        <div class="job-header">
+          <h3 data-i18n="caic-title">中汽创智</h3>
+          <span class="period">2025 - <span data-i18n="now">现在</span></span>
+        </div>
+        <ul style="list-style:none; margin-top:8px;">
+          <li class="job-item" data-i18n="caic-1">AIBOX应用开发：车载AI算力盒应用框架设计与实现，大模型端侧推理集成</li>
+          <li class="job-item" data-i18n="caic-2">自研微内核RTOS：负责线程调度模块系统调用设计与实现</li>
+        </ul>
+      </div>
+
+      <div class="job-entry">
+        <div class="job-header">
+          <h3 data-i18n="yiqi-title">南京翼辉信息技术有限公司</h3>
+          <span class="period">2023 - 2025</span>
+        </div>
+        <ul style="list-style:none; margin-top:8px;">
+          <li class="job-item" data-i18n="yiqi-1">中间件移植：完成gRPC、Caddy、OpenTelemetry等在SylixOS上的移植与维护</li>
+          <li class="job-item" data-i18n="yiqi-2">容器性能优化：主导自研容器ECS启动性能调优，解决关键性能瓶颈</li>
+          <li class="job-item" data-i18n="yiqi-3">VSOA Golang版：分布式软总线VSOA的Golang版本迭代与维护</li>
+          <li class="job-item" data-i18n="yiqi-4">Go Runtime维护：SylixOS系统Golang运行时维护，修复关键问题</li>
+          <li class="job-item" data-i18n="yiqi-5">OTA管理平台：设计并开发多平台、多架构OTA升级系统</li>
+          <li class="job-item" data-i18n="yiqi-6">License授权体系：设计授权加解密方案，实现Golang版本授权系统</li>
+          <li class="job-item" data-i18n="yiqi-7">DevSecOps演示：负责客户演示方案设计与实现</li>
+        </ul>
+      </div>
+
+      <div class="job-entry">
+        <div class="job-header">
+          <h3 data-i18n="xintou-title">西安芯瞳半导体有限公司</h3>
+          <span class="period">2022 - 2023</span>
+        </div>
+        <ul style="list-style:none; margin-top:8px;">
+          <li class="job-item" data-i18n="xintou-1">XYGPU驱动开发：完成FPGA板卡PCI设备地址映射与中断申请，驱动移植至CentOS、麒麟及SylixOS</li>
+          <li class="job-item" data-i18n="xintou-2">平台优化：基于FT2000/4 Arm64平台优化性能，配合用户驱动组进行显卡调试</li>
+        </ul>
+      </div>
+
+      <div class="job-entry">
+        <div class="job-header">
+          <h3 data-i18n="xiangde-title">西安象德信息技术有限公司</h3>
+          <span class="period">2021 - 2022</span>
+        </div>
+        <ul style="list-style:none; margin-top:8px;">
+          <li class="job-item" data-i18n="xiangde-1">C类信号机开发：作为项目负责人，设计符合国标的信号机方案，实现算法调度、灯态检测、软件升级等功能</li>
+        </ul>
+      </div>
+
+      <div class="job-entry">
+        <div class="job-header">
+          <h3 data-i18n="huawei-title">华为西安研究所</h3>
+          <span class="period">2019 - 2021</span>
+        </div>
+        <ul style="list-style:none; margin-top:8px;">
+          <li class="job-item" data-i18n="huawei-1">6M01芯片驱动：主导芯片驱动开发，完成芯片挂接、上电初始化及波束配置，保障设备按期商用</li>
+          <li class="job-item" data-i18n="huawei-2">问题解决：定位并解决140+实验室与产线问题，获"BCM烂飞机奖"及"年度优秀新员工"</li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section" id="education">
+      <h2 data-i18n="edu-title">🎓 教育背景</h2>
+      <div class="education-item">
+        <span class="school" data-i18n="edu-school">西安交通大学 · 信息工程 · 本科 · 2015 - 2019</span>
+      </div>
+      <p class="details" style="color:var(--text-secondary); margin-top:6px;" data-i18n="edu-details">
+        GPA 86 | 校级思源奖学金 | 校级优秀学生（2015-2018）
+      </p>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section" id="contact">
+      <h2 data-i18n="contact-title">📫 联系方式</h2>
+      <ul class="contact-list">
+        <li>
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zm16 2l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          <span>wyf9661@hotmail.com</span>
+        </li>
+      </ul>
+    </section>
+
+    <footer class="footer">
+      <p data-i18n="footer" data-i18n-html="footer">Built with <a href="https://github.com/nousresearch/hermes-agent" target="_blank">Hermes</a> | © 2026 Wang Yifan</p>
+    </footer>
+  </div>
+
+  <script>
+    const translations = {
+      zh: {
+        name: "王一凡",
+        title: "嵌入式软件工程师",
+        intro: "嵌入式软件工程师，现任职于中汽创智（CAIC），专注于RTOS系统开发与大模型在车载场景的端侧落地。",
+        "focus-label": "当前方向：",
+        "recent-title": "🔭 最近在做什么",
+        "aibox-title": "AIBOX 应用开发",
+        "aibox-desc": "车载外挂AI算力盒应用开发，探索大模型在汽车端侧的部署与推理优化。端云协同路线，解决原车算力不足与AI功能持续迭代的问题。",
+        "rtos-title": "自研微内核 RTOS",
+        "rtos-desc": "负责线程调度模块的系统调用实现，涉及syscall接口设计与内核态实现。",
+        "sylixos-title": "翼辉 SylixOS 生态建设",
+        past: "（过往）",
+        "sylixos-desc": "SylixOS是目前国内最完整的嵌入式实时操作系统之一。",
+        "tech-title": "⚙️ 技术栈",
+        "tech-lang": "语言",
+        "tech-os": "操作系统",
+        "tech-cloud": "云原生",
+        "tech-db": "数据库",
+        "tech-dev": "开发",
+        "oss-title": "📦 开源贡献",
+        "vsoa-desc": "VSOA分布式软总线的Golang实现，支持服务发现、RPC通信，用于SylixOS与Linux系统间的跨进程、跨设备通信。",
+        "go-desc": "SylixOS的Golang Runtime维护分支，修复上游bug并跟进新版本特性。",
+        "exp-title": "👨‍💻 工作经历",
+        "caic-title": "中汽创智",
+        "now": "现在",
+        "caic-1": "AIBOX应用开发：车载AI算力盒应用框架设计与实现，大模型端侧推理集成",
+        "caic-2": "自研微内核RTOS：负责线程调度模块系统调用设计与实现",
+        "yiqi-title": "南京翼辉信息技术有限公司",
+        "yiqi-1": "中间件移植：完成gRPC、Caddy、OpenTelemetry等在SylixOS上的移植与维护",
+        "yiqi-2": "容器性能优化：主导自研容器ECS启动性能调优，解决关键性能瓶颈",
+        "yiqi-3": "VSOA Golang版：分布式软总线VSOA的Golang版本迭代与维护",
+        "yiqi-4": "Go Runtime维护：SylixOS系统Golang运行时维护，修复关键问题",
+        "yiqi-5": "OTA管理平台：设计并开发多平台、多架构OTA升级系统",
+        "yiqi-6": "License授权体系：设计授权加解密方案，实现Golang版本授权系统",
+        "yiqi-7": "DevSecOps演示：负责客户演示方案设计与实现",
+        "xintou-title": "西安芯瞳半导体有限公司",
+        "xintou-1": "XYGPU驱动开发：完成FPGA板卡PCI设备地址映射与中断申请，驱动移植至CentOS、麒麟及SylixOS",
+        "xintou-2": "平台优化：基于FT2000/4 Arm64平台优化性能，配合用户驱动组进行显卡调试",
+        "xiangde-title": "西安象德信息技术有限公司",
+        "xiangde-1": "C类信号机开发：作为项目负责人，设计符合国标的信号机方案，实现算法调度、灯态检测、软件升级等功能",
+        "huawei-title": "华为西安研究所",
+        "huawei-1": "6M01芯片驱动：主导芯片驱动开发，完成芯片挂接、上电初始化及波束配置，保障设备按期商用",
+        "huawei-2": "问题解决：定位并解决140+实验室与产线问题，获\"BCM烂飞机奖\"及\"年度优秀新员工\"",
+        "edu-title": "🎓 教育背景",
+        "edu-school": "西安交通大学 · 信息工程 · 本科 · 2015 - 2019",
+        "edu-details": "GPA 86 | 校级思源奖学金 | 校级优秀学生（2015-2018）",
+        "contact-title": "📫 联系方式",
+        footer: "Built with Hermes | © 2026 Wang Yifan",
+        "tag-rtos": "RTOS",
+        "tag-llms": "LLMs",
+        "tag-aibox": "AIBOX",
+        "tag-embedded-ai": "嵌入式AI应用",
+        "tech-lang-content": "C / Golang",
+        "tech-os-content": "Linux · RTOS (SylixOS / 自研微内核)",
+        "tech-cloud-content": "Docker · gRPC · OpenTelemetry · 微服务",
+        "tech-db-content": "MySQL · SQLite",
+        "tech-dev-content": "DevSecOps · OTA升级方案 · License授权体系",
+        footer: "由 <a href=\"https://github.com/nousresearch/hermes-agent\" target=\"_blank\">Hermes</a> 驱动 | © 2026 王一凡",
+        "tag-rtos": "RTOS",
+        "tag-llms": "LLMs",
+        "tag-aibox": "AIBOX",
+        "tag-embedded-ai": "嵌入式AI应用"
+      },
+en: {
+        name: "Wang Yifan",
+        title: "Embedded Software Engineer",
+        intro: "Embedded Software Engineer at CAIC, focusing on RTOS system development and Large Language Model deployment in automotive edge scenarios.",
+        "focus-label": "Current Focus:",
+        "recent-title": "🔭 What I'm Working On",
+        "aibox-title": "AIBOX Application Development",
+        "aibox-desc": "Automotive AI compute box application development, exploring LLM deployment and inference optimization on vehicle edge. Cloud-edge collaboration to solve insufficient compute and continuous AI feature iteration.",
+        "rtos-title": "Self-developed Microkernel RTOS",
+        "rtos-desc": "Syscall implementation for thread scheduling module, including syscall interface design and kernel-space implementation.",
+        "sylixos-title": "SylixOS Ecosystem (Past)",
+        "past": "(Past)",
+        "sylixos-desc": "SylixOS is one of the most complete embedded real-time operating systems in China.",
+        "tech-title": "⚙️ Tech Stack",
+        "tech-lang": "Languages",
+        "tech-os": "OS",
+        "tech-cloud": "Cloud Native",
+        "tech-db": "Database",
+        "tech-dev": "Development",
+        "oss-title": "📦 Open Source",
+        "vsoa-desc": "Golang implementation of VSOA distributed bus, supporting service discovery and RPC communication for cross-process and cross-device communication between SylixOS and Linux.",
+        "go-desc": "SylixOS Golang Runtime maintenance branch, fixing upstream bugs and following new version features.",
+        "exp-title": "👨‍💻 Experience",
+        "caic-title": "CAIC",
+        "now": "Present",
+        "caic-1": "AIBOX Application: automotive AI box application framework design and implementation, LLM edge inference integration",
+        "caic-2": "Self-developed Microkernel RTOS: thread scheduling module syscall design and implementation",
+        "yiqi-title": "Nanjing Yiqi Information Technology Co., Ltd.",
+        "yiqi-1": "Middleware Porting: gRPC, Caddy, OpenTelemetry porting and maintenance on SylixOS",
+        "yiqi-2": "Container Performance: led ECS container startup performance tuning, solved critical bottlenecks",
+        "yiqi-3": "VSOA Golang: distributed bus VSOA Golang version iteration and maintenance",
+        "yiqi-4": "Go Runtime: SylixOS Golang runtime maintenance and critical bug fixes",
+        "yiqi-5": "OTA Platform: designed multi-platform, multi-architecture OTA upgrade system",
+        "yiqi-6": "License System: designed authorization encryption/decryption solution, implemented Golang authorization system",
+        "yiqi-7": "DevSecOps Demo: customer demo solution design and implementation",
+        "xintou-title": "Xi'an Xiangti Semiconductor Co., Ltd.",
+        "xintou-1": "XYGPU Driver: FPGA PCI device address mapping and interrupt allocation, driver porting to CentOS, Kylin and SylixOS",
+        "xintou-2": "Platform Optimization: FT2000/4 Arm64 platform performance optimization, GPU driver debugging",
+        "xiangde-title": "Xi'an Xiangde Information Technology Co., Ltd.",
+        "xiangde-1": "Class C Traffic Signal Controller: project lead, designed national standard-compliant signal controller with algorithm scheduling, lamp detection, and OTA upgrade.",
+        "huawei-title": "Huawei Xi'an Research Institute",
+        "huawei-1": "6M01 Chip Driver: led chip driver development, chip attachment, power-on initialization and beam configuration, ensured on-time commercial deployment",
+        "huawei-2": "Problem Solving: located and resolved 140+ lab and production line issues, received 'BCM Broken Airplane Award' and 'Annual Excellent New Employee'",
+        "edu-title": "🎓 Education",
+        "edu-school": "Xi'an Jiaotong University · Information Engineering · Bachelor's · 2015 - 2019",
+        "edu-details": "GPA 86 | University Siyuan Scholarship | University Outstanding Student (2015-2018)",
+        "contact-title": "📫 Contact",
+        footer: "Built with <a href=\"https://github.com/nousresearch/hermes-agent\" target=\"_blank\">Hermes</a> | © 2026 Wang Yifan",
+        "tag-rtos": "RTOS",
+        "tag-llms": "LLMs",
+        "tag-aibox": "AIBOX",
+        "tag-embedded-ai": "Embedded AI Applications",
+        "tech-lang-content": "C / Golang",
+        "tech-os-content": "Linux · RTOS (SylixOS / Self-developed Microkernel)",
+        "tech-cloud-content": "Docker · gRPC · OpenTelemetry · Microservices",
+        "tech-db-content": "MySQL · SQLite",
+        "tech-dev-content": "DevSecOps · OTA Upgrade Solution · License Authorization System"
+}
+    };
+
+    let currentLang = localStorage.getItem('lang') || 'en';
+    let currentTheme = localStorage.getItem('theme') || 'light';
+
+    function applyTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      const sunIcon = document.getElementById('sun-icon');
+      const moonIcon = document.getElementById('moon-icon');
+      if (theme === 'dark') {
+        sunIcon.style.display = 'block';
+        moonIcon.style.display = 'none';
+      } else {
+        sunIcon.style.display = 'none';
+        moonIcon.style.display = 'block';
+      }
+      localStorage.setItem('theme', theme);
+    }
+
+    function applyLanguage(lang) {
+      currentLang = lang;
+      document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang][key]) {
+          if (el.hasAttribute('data-i18n-html')) {
+            el.innerHTML = translations[lang][key];
+          } else {
+            el.textContent = translations[lang][key];
+          }
+        }
+      });
+      document.getElementById('lang-zh').classList.toggle('active', lang === 'zh');
+      document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+      localStorage.setItem('lang', lang);
+    }
+
+    document.getElementById('theme-toggle').addEventListener('click', () => {
+      currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+      applyTheme(currentTheme);
+    });
+
+    document.getElementById('lang-zh').addEventListener('click', () => applyLanguage('zh'));
+    document.getElementById('lang-en').addEventListener('click', () => applyLanguage('en'));
+
+    applyTheme(currentTheme);
+    applyLanguage(localStorage.getItem('lang') || 'en');
+  </script>
+</body>
+</html>
